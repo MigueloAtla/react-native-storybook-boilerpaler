@@ -1,5 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import styled, {css} from '@emotion/native';
+import {flexCenter, size} from '../../styles/mixins';
 
 export type ButtonProps = {
   onPress: () => void;
@@ -29,14 +31,19 @@ const styles = StyleSheet.create({
 });
 
 export const MyButton = ({text, onPress, color, textColor}: ButtonProps) => (
-  <View style={styles.buttonContainer}>
-    <TouchableOpacity
-      style={[styles.button, !!color && {backgroundColor: color}]}
-      onPress={onPress}
-      activeOpacity={0.8}>
-      <Text style={[styles.buttonText, !!textColor && {color: textColor}]}>
-        {text}
-      </Text>
-    </TouchableOpacity>
-  </View>
+  <ButtonStyled color={color} onPress={onPress} activeOpacity={0.8}>
+    <ButtonTextStyled>{text}</ButtonTextStyled>
+  </ButtonStyled>
 );
+
+const ButtonTextStyled = styled.Text`
+  font-size: 60px;
+`;
+const ButtonStyled = styled.TouchableOpacity`
+  height: auto;
+  flex-grow: 1;
+  border-radius: 4px;
+  color: white;
+  background-color: ${({color}: {color: string}) => color};
+  ${flexCenter};
+`;

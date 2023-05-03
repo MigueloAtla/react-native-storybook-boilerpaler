@@ -1,6 +1,6 @@
 import {withThemeFromJSXProvider} from '@storybook/addon-styling';
 import {theme} from '../src/styles/theme';
-import {ThemeProvider as ThemeProvide} from '@emotion/react';
+import {ThemeProvider} from '@emotion/react';
 
 export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},

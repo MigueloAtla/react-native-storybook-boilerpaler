@@ -23,6 +23,7 @@ const PressableStyled = styled.Pressable`
   ${circle};
   border: 2px solid #555;
   padding-top: ${({higherTop}) => (higherTop ? '4px' : '0px')};
+  ${props => console.log(props)}// theme is passed as expected
 `;
 
 const SymbolStyled = styled.Text`

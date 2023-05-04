@@ -1,19 +1,20 @@
-// stories/MyButton.stories.tsx
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
-
+import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import {MyButton} from './Button';
 
-export default {
-  title: 'components/MyButton',
-  component: MyButton,
-} as ComponentMeta<typeof MyButton>;
-
-export const Basic: ComponentStory<typeof MyButton> = args => (
-  <MyButton {...args} />
-);
-
-Basic.args = {
-  text: 'This is a button',
-  color: 'purple',
+const MyButtonMeta: ComponentMeta<typeof MyButton> = {
+    title: 'MyButton',
+    component: MyButton,
+    argTypes: {
+        onPress: {action: 'pressed the button'},
+    },
+    args: {
+        text: 'Hello world',
+    },
 };
+
+export default MyButtonMeta;
+
+type MyButtonStory = ComponentStory<typeof MyButton>;
+
+export const Basic: MyButtonStory = args => <MyButton {...args} />;

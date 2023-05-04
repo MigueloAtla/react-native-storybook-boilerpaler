@@ -1,49 +1,38 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import styled, {css} from '@emotion/native';
-import {flexCenter, size} from '../../styles/mixins';
+import {TouchableOpacity, StyleSheet} from 'react-native';
+import styled from '@emotion/native';
+import {flexCenter, fontSelector} from '@styles/mixins';
 
-export type ButtonProps = {
-  onPress: () => void;
-  text: string;
-  color?: string;
-  textColor?: string;
+interface MyButtonProps {
+    onPress: () => void;
+    text: string;
+}
+
+export const MyButton = ({onPress, text}: MyButtonProps) => {
+    return (
+        <ButtonStyled onPress={onPress}>
+            <ButtonTextStyled style={styles.text}>{text}</ButtonTextStyled>
+        </ButtonStyled>
+    );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 4,
-    alignSelf: 'flex-start',
-    flexGrow: 0,
-    backgroundColor: 'purple',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  buttonContainer: {
-    alignItems: 'flex-start',
-    flex: 1,
-  },
+    container: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        backgroundColor: 'violet',
+    },
+    text: {color: 'black'},
 });
 
-export const MyButton = ({text, onPress, color, textColor}: ButtonProps) => (
-  <ButtonStyled color={color} onPress={onPress} activeOpacity={0.8}>
-    <ButtonTextStyled>{text}</ButtonTextStyled>
-  </ButtonStyled>
-);
+const ButtonStyled = styled.TouchableOpacity`
+    padding: 16px 8px;
+    background-color: ${({theme}) => theme.colors.bg};
+    ${flexCenter};
+`;
 
 const ButtonTextStyled = styled.Text`
-  font-size: 60px;
-`;
-const ButtonStyled = styled.TouchableOpacity`
-  height: auto;
-  flex-grow: 1;
-  border-radius: 4px;
-  color: white;
-  background-color: ${({color}: {color: string}) => color};
-  ${flexCenter};
+    font-size: 60px;
+    color: '#000000';
+    font-family: ${fontSelector()};
 `;

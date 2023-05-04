@@ -1,9 +1,11 @@
+import {Platform} from 'react-native';
+
 import {css} from '@emotion/native';
 import {theme} from './theme';
 
 export const flexCenter = css`
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const flex = (flex: number = 1) => `
@@ -17,11 +19,19 @@ export const size = (w: number, h: number = w) => `
   height: ${h}px;
 `;
 export const circle = css`
-  border-radius: 9999px;
+    border-radius: 9999px;
 `;
 export const rem = (size: number) => {
-  return `${theme.fontSizes.base * size}px`;
+    return `${theme.fontSizes.base * size}px`;
 };
 export const remNumber = (size: number) => {
-  return theme.fontSizes.base * size;
+    return theme.fontSizes.base * size;
+};
+
+export const fontSelector = () => {
+    return Platform.OS === 'web'
+        ? css`
+              ${theme.fonts.web}
+          `
+        : css`sans-serif`;
 };
